@@ -6,6 +6,9 @@
 [Ll]ogs/
 UserSettings/
 MemoryCaptures/
+Assets/Imported Assets/
+Assets/Imported Assets.meta
+*.unitypackage
 .idea/
 .vs/
 *.csproj

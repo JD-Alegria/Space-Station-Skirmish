@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8608144373c265e4e8c62571f5b27d13, type: 3}
+  m_Name: Ion Turret
+  m_EditorClassIdentifier: Assembly-CSharp::FireSupportPlatformData
+  platformName: Ion Turret
+  platformType: 0
+  platformPrefab: {fileID: 3560219438496388116, guid: 8e9f780065b31db45b003a079af885d5, type: 3}
+  icon: {fileID: 0}
+  description: Ion Turret
+  platformTierLevel: 0
+  maxHealth: 100
+  buildCost: 100
+  upgradeCost: 100
+  batteryPowerCostLevel1: 2
+  batteryPowerCostLevel2: 4
+  platformPanel: {fileID: 0}
+  fireSupportType: 0
+  detectionRadius: 50
+  attackRange: 50
+  attackDamageLevel1: 1
+  attackDamageLevel2: 1
+  attackFireRateLevel1: 0.25
+  attackFireRateLevel2: 0.33
+  bulletPrefab: {fileID: 0}
+  ionProjectilePrefab: {fileID: 0}
+  impactFxPrefab: {fileID: 0}
+  bulletSFX: {fileID: 0}
+  ionProjectileSFX: {fileID: 0}
+  impactSFX: {fileID: 0}

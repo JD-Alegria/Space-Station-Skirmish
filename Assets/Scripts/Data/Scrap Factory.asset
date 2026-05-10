@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da3d18ba5481b348b0e7831b20c0930, type: 3}
+  m_Name: Scrap Factory
+  m_EditorClassIdentifier: Assembly-CSharp::EconomyPlatformData
+  platformName: 
+  platformType: 0
+  platformPrefab: {fileID: 0}
+  icon: {fileID: 0}
+  description: 
+  platformTierLevel: 0
+  maxHealth: 0
+  buildCost: 0
+  upgradeCost: 0
+  batteryPowerCostLevel1: 0
+  batteryPowerCostLevel2: 0
+  platformPanel: {fileID: 0}
+  scrapIntervalLevel1: 0
+  scrapIntervalLevel2: 0
+  scrapPerTickRateLevel1: 0
+  scrapPerTickRateLevel2: 0
