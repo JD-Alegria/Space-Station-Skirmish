@@ -7,9 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     
+    [Header("Text Field References")]
     [SerializeField] TMP_Text batteryReserveCounter;
     [SerializeField] TMP_Text scrapCounter;
     [SerializeField] TMP_Text enemyShipsLeftText;
+    [SerializeField] TMP_Text waveCounterText;
+    
+    [Space]
     [SerializeField] GameObject emptyPlatformPanelUIPrefab;
     [SerializeField] GameObject spaceStationPanelUIPrefab;
     [SerializeField] Transform canvasTransform;
@@ -45,6 +49,7 @@ public class UIManager : MonoBehaviour
         UpdateBatteryReserveCounter();
         UpdateScrapCounter();
         UpdateShipsLeftText();
+        UpdateWaveCounter();
     }
 
     void UpdateBatteryReserveCounter()
@@ -60,6 +65,11 @@ public class UIManager : MonoBehaviour
     void UpdateShipsLeftText()
     {
         enemyShipsLeftText.text = "Enemy Ships Left: " + WaveManager.Instance.ActiveShipCount;
+    }
+
+    void UpdateWaveCounter()
+    {
+        waveCounterText.text = "Wave Number: " + WaveManager.Instance.WaveCount;
     }
 
     public void OpenPlatformUI(Platform platform)

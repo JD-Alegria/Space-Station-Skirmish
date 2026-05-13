@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scrap Factory
   m_EditorClassIdentifier: Assembly-CSharp::EconomyPlatformData
   platformName: 
-  platformType: 0
+  platformType: 2
   platformPrefab: {fileID: 0}
   icon: {fileID: 0}
   description: 

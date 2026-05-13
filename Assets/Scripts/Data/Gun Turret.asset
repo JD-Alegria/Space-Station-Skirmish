@@ -26,14 +26,15 @@ MonoBehaviour:
   platformPanel: {fileID: 1009064840840493821, guid: 394ca2a2e7e5357498f7492f31d8b470, type: 3}
   fireSupportType: 0
   detectionRadius: 50
-  attackRange: 50
+  attackRange: 45
   attackDamageLevel1: 50
   attackDamageLevel2: 1
   attackFireRateLevel1: 2
   attackFireRateLevel2: 2.5
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 172065161708692102, guid: df476f2c908598240a3bf62cc3ea2cf6, type: 3}
   ionProjectilePrefab: {fileID: 0}
   impactFxPrefab: {fileID: 0}
+  ionProjectileLifetime: 0.5
   bulletSFX: {fileID: 0}
   ionProjectileSFX: {fileID: 0}
   impactSFX: {fileID: 0}

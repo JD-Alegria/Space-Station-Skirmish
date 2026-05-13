@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31839a5ba77cc464abf01b6966f8bc9d, type: 3}
-  m_Name: Enemy Fighter
+  m_Name: Enemy Corvette
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShipData
-  enemyShipName: Enemy Fighter
-  shipType: 0
-  shipPrefab: {fileID: 6072250409717738023, guid: 910721ed6d2ad94408a1206f73b272d6, type: 3}
-  maxHealth: 100
-  movementSpeed: 5
-  rotationSpeed: 1
-  attackDamage: 25
+  enemyShipName: Enemy Corvette
+  shipType: 1
+  shipPrefab: {fileID: 4847779830233160806, guid: c0644e1d80cd49145a1b2ac9302dbc48, type: 3}
+  maxHealth: 150
+  movementSpeed: 3.5
+  rotationSpeed: 0.5
+  attackDamage: 50
   attackRate: 1
   attackRange: 10
-  threatCost: 2
+  threatCost: 10
   bulletPrefab: {fileID: 0}
   ionProjectilePrefab: {fileID: 0}
   impactFxPrefab: {fileID: 0}
   bulletSFX: {fileID: 0}
   ionProjectileSFX: {fileID: 0}
   impactSFX: {fileID: 0}
-  scrapValue: 10
+  scrapValue: 30

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FighterAttack : MonoBehaviour
+public class ShipAttack : MonoBehaviour
 {
     float range = 100f;
     float fireRate = 1f;
@@ -51,7 +51,7 @@ public class FighterAttack : MonoBehaviour
         Vector3 startPos = muzzle1.position;
         Vector3 endPos = hitSomething ? hit.point : startPos + muzzle1.forward * range;
 
-        Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos);
+        Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos, true);
         //debug tracer code
 
         if (hit.collider == null) return;
@@ -68,7 +68,7 @@ public class FighterAttack : MonoBehaviour
         startPos = muzzle2.position;
         endPos = hitSomething ? hit.point : startPos + muzzle2.forward * range;
 
-        Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos);
+        Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos, true);
         //debug tracer code
 
         if (hit.collider == null) return;

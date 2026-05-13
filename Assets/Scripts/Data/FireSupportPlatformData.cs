@@ -28,6 +28,9 @@ public class FireSupportPlatformData : PlatformData
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject ionProjectilePrefab;
     [SerializeField] GameObject impactFxPrefab;
+    [SerializeField] float ionProjectileLifetime;
+    
+    public float IonProjectileLifetime => ionProjectileLifetime;
 
     [Header("SFX")] 
     [SerializeField] AudioClip bulletSFX;

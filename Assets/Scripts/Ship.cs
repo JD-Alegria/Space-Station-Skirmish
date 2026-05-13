@@ -9,7 +9,7 @@ public class Ship : MonoBehaviour
     
     ShipMovement shipMovement;
     ShipHealth shipHealth;
-    FighterAttack fighterAttack;
+    ShipAttack shipAttack;
 
     float updateInterval = 0.1f;
 
@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
     {
         shipMovement = GetComponent<ShipMovement>();
         shipHealth = GetComponent<ShipHealth>();
-        fighterAttack = GetComponent<FighterAttack>();
+        shipAttack = GetComponent<ShipAttack>();
 
         targetPos = GameObject.FindGameObjectWithTag("SpaceStation").transform;
     }
@@ -30,7 +30,7 @@ public class Ship : MonoBehaviour
         
         shipHealth.Init(data);
         shipMovement.Init(data, targetPos);
-        fighterAttack.Init(data);
+        shipAttack.Init(data);
     }
 
     void Start()
@@ -56,7 +56,7 @@ public class Ship : MonoBehaviour
             float dist = Vector3.Distance(transform.position, targetPos.position);
             if (dist > data.AttackRange) continue;
 
-            fighterAttack.Fire();
+            shipAttack.Fire();
         }
     }
 }

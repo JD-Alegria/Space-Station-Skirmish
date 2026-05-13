@@ -33,6 +33,12 @@ public class EnemyShipData : ScriptableObject
     public float AttackDamage => attackDamage;
     public float AttackRate => attackRate;
     public float AttackRange => attackRange;
+
+    [Header("Spawner Stats")] 
+    [Tooltip("Stats for a threat-budget wave system.")]
+    [SerializeField] int threatCost;
+    
+    public int ThreatCost => threatCost;
     
     [Header("Fire Support Platform FX")]
     [Space]

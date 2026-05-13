@@ -2,16 +2,21 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
 public class BulletTracer : MonoBehaviour
 {
     [SerializeField] LineRenderer lineRenderer;
-    [SerializeField] float speed = 250f;
+    [SerializeField] float speed = 300f;
     [SerializeField] float tracerLength = 0.75f;
 
-    public void Init(Vector3 start, Vector3 end)
+    bool useLineRendererAnimation;
+
+    public void Init(Vector3 start, Vector3 end, bool useLineRendererAnimation)
     {
-        StartCoroutine(AnimateTracer(start, end));
+        if (useLineRendererAnimation)
+        {
+            StartCoroutine(AnimateTracer(start, end));
+        }
+        StartCoroutine(MoveTracer(start, end));
     }
 
     IEnumerator AnimateTracer(Vector3 start, Vector3 end)
@@ -35,6 +40,30 @@ public class BulletTracer : MonoBehaviour
 
         lineRenderer.SetPosition(0, end);
         lineRenderer.SetPosition(1, end);
+
+        Destroy(gameObject);
+    }
+    
+    IEnumerator MoveTracer(Vector3 start, Vector3 end)
+    {
+        float distance = Vector3.Distance(start, end);
+        float traveled = 0f;
+        Vector3 direction = (end - start).normalized;
+
+        transform.position = start;
+        
+        if (direction != Vector3.zero) transform.rotation = Quaternion.LookRotation(direction);
+
+        while (traveled < distance)
+        {
+            traveled += speed * Time.deltaTime;
+
+            transform.position = start + direction * Mathf.Min(traveled, distance);
+
+            yield return null;
+        }
+
+        transform.position = end;
 
         Destroy(gameObject);
     }

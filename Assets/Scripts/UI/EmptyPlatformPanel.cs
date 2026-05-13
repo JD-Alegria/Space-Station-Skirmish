@@ -17,7 +17,8 @@ public class EmptyPlatformPanel : PlatformPanel
 
     public void OnBuildIonTurretPlatformClicked()
     {
-        throw new NotImplementedException();
+        if  (platform == null) return;
+        
         platform.Build(ionTurretPlatformData);
     }
 

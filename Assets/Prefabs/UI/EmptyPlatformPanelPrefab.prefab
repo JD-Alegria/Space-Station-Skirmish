@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyPlatformPanel
   gunTurretPlatformData: {fileID: 11400000, guid: 73fed9214a2c1db42bcb0357003e5df8, type: 2}
-  ionTurretPlatformData: {fileID: 0}
+  ionTurretPlatformData: {fileID: 11400000, guid: e8a601f3fd1cc124aa979e1959d9fd64, type: 2}
   defensePlatformData: {fileID: 0}
   economyPlatformData: {fileID: 0}
 --- !u!1 &1017693641964239464

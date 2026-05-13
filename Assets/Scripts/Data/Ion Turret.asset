@@ -15,25 +15,26 @@ MonoBehaviour:
   platformName: Ion Turret
   platformType: 0
   platformPrefab: {fileID: 3560219438496388116, guid: 8e9f780065b31db45b003a079af885d5, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b36811fb1ad44cd4e98148d724fe9d11, type: 3}
   description: Ion Turret
   platformTierLevel: 0
   maxHealth: 100
   buildCost: 100
   upgradeCost: 100
   batteryPowerCostLevel1: 2
-  batteryPowerCostLevel2: 4
-  platformPanel: {fileID: 0}
-  fireSupportType: 0
+  batteryPowerCostLevel2: 3
+  platformPanel: {fileID: 1009064840840493821, guid: 394ca2a2e7e5357498f7492f31d8b470, type: 3}
+  fireSupportType: 1
   detectionRadius: 50
-  attackRange: 50
-  attackDamageLevel1: 1
+  attackRange: 45
+  attackDamageLevel1: 100
   attackDamageLevel2: 1
-  attackFireRateLevel1: 0.25
+  attackFireRateLevel1: 1
   attackFireRateLevel2: 0.33
   bulletPrefab: {fileID: 0}
-  ionProjectilePrefab: {fileID: 0}
+  ionProjectilePrefab: {fileID: 8229768129901881209, guid: 49c873bf43422e14dbb97559a6cbeb40, type: 3}
   impactFxPrefab: {fileID: 0}
+  ionProjectileLifetime: 0.5
   bulletSFX: {fileID: 0}
   ionProjectileSFX: {fileID: 0}
   impactSFX: {fileID: 0}

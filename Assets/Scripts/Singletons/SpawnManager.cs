@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     
     [Header("Data")]
     [SerializeField] EnemyShipData fighterData;
+    [SerializeField] EnemyShipData corvetteData;
 
     [Space]
     [SerializeField] List<Transform> spawnPos;
@@ -20,6 +21,10 @@ public class SpawnManager : MonoBehaviour
     [Tooltip("Spawns Ships, then ends SpawnManager. If zero, then ignored. Primarily a Debug Tool.")]
     [SerializeField] int oneShotShipsToSpawn;
     [SerializeField] float spawnDelay = 1f;
+
+    [Header("Debug Force Spawn")]
+    [SerializeField] bool forceSpawnFightersOnly = false;
+    [SerializeField] bool forceSpawnCorvettesOnly = false;
     
     //debug tool for now
     public int OneShotShipsToSpawn => oneShotShipsToSpawn;
@@ -39,8 +44,6 @@ public class SpawnManager : MonoBehaviour
             StopCoroutine(spawnRoutine);
             spawnRoutine = null;
         }
-
-        spawnRoutine = StartCoroutine(SpawnRandomSingleObjectType());
     }
 
     void OnEnable()
@@ -53,7 +56,7 @@ public class SpawnManager : MonoBehaviour
         WaveManager.Instance.OnWaveStateChange -= SpawnWave;
     }
 
-    void SpawnWave(WaveState newWaveState)
+    void SpawnWave(WaveState newWaveState, int waveCount, int threatBudget)
     {
         if (newWaveState != WaveState.Spawning) return;
         
@@ -63,26 +66,67 @@ public class SpawnManager : MonoBehaviour
             spawnRoutine = null;
         }
         
-        spawnRoutine = StartCoroutine(SpawnRandomSingleObjectType());
+        //Debug code only
+        if (forceSpawnFightersOnly)
+        {
+            spawnRoutine = StartCoroutine(SpawnRandomShip(threatBudget, 0));
+            return;
+        }
+        
+        if (forceSpawnCorvettesOnly)
+        {
+            spawnRoutine = StartCoroutine(SpawnRandomShip(threatBudget, 1));
+            return;
+        }
+
+        //only spawnfighters
+        if (waveCount < 5)
+        {
+            spawnRoutine = StartCoroutine(SpawnRandomShip(threatBudget, 0));
+            return;
+        }
+        
+        spawnRoutine = StartCoroutine(SpawnRandomShip(threatBudget));
     }
 
     //has debug code, needs to be refactored to include how many ships to spawn
-    IEnumerator SpawnRandomSingleObjectType()
+    IEnumerator SpawnRandomShip(int threatBudget, int spawnIndex = -1)
     {
         if (spawnPrefabs.Count == 0) yield break;
         if (WaveManager.CurrentWaveState != WaveState.Spawning) yield break;
         
-        WaitForSeconds wait = new WaitForSeconds(spawnDelay);
-        int index = Random.Range(0, spawnPrefabs.Count);
-
-        for (int i = 0; i < oneShotShipsToSpawn; i++)
+        while (threatBudget >= 0)
         {
-            Vector3 spawnPos = GetRandomSpawnPos();
-            Quaternion lookDirection = GetLookDirection(spawnPos);
-            SpawnFighter(index, spawnPos, lookDirection);
-            yield return wait;
+            WaitForSeconds wait = new WaitForSeconds(spawnDelay);
+            
+            if (spawnIndex == -1)
+            {
+                spawnIndex = Random.Range(0, spawnPrefabs.Count);
+            }
+
+            if (spawnIndex == 0)
+            {
+                for (int i = 0; i < oneShotShipsToSpawn; i++)
+                {
+                    Vector3 spawnPos = GetRandomSpawnPos();
+                    Quaternion lookDirection = GetLookDirection(spawnPos);
+                    SpawnFighter(spawnIndex, spawnPos, lookDirection);
+                    threatBudget -= fighterData.ThreatCost;
+                    yield return wait;
+                }
+            }
+            else if (spawnIndex == 1)
+            {
+                for (int i = 0; i < oneShotShipsToSpawn; i++)
+                {
+                    Vector3 spawnPos = GetRandomSpawnPos();
+                    Quaternion lookDirection = GetLookDirection(spawnPos);
+                    SpawnCorvette(spawnIndex, spawnPos, lookDirection);
+                    threatBudget -= corvetteData.ThreatCost;
+                    yield return wait;
+                }
+            }
         }
-        
         spawnRoutine = null;
     }
 
@@ -93,6 +137,15 @@ public class SpawnManager : MonoBehaviour
         newFighterShip.Init(fighterData);
         
         WaveManager.Instance.RegisterShip(newFighterShip.GetComponent<ShipHealth>());
+    }
+
+    void SpawnCorvette(int index, Vector3 spawnPos, Quaternion lookDirection)
+    {
+        GameObject newCorvette = Instantiate(spawnPrefabs[index], spawnPos, lookDirection);
+        Ship newCorvetteShip = newCorvette.GetComponent<Ship>();
+        newCorvetteShip.Init(corvetteData);
+        
+        WaveManager.Instance.RegisterShip(newCorvette.GetComponent<ShipHealth>());
     }
 
     Vector3 GetRandomSpawnPos()

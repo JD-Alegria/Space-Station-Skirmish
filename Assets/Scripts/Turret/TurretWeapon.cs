@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 public class TurretWeapon : MonoBehaviour
 {
+    FireSupportType weaponType;
     float range = 100f;
     float fireRate = 1f;
     float damage = 10f;
+    float ionProjectileLifetime = 0.5f;
     float nextFireTime;
     [SerializeField] Transform muzzle;
     [SerializeField] LayerMask hitMask;
@@ -24,6 +26,7 @@ public class TurretWeapon : MonoBehaviour
 
     public void Init(FireSupportPlatformData data)
     {
+        weaponType = data.FireSupportType;
         range = data.AttackRange;
         fireRate = data.AttackFireRateLevel1;
         damage = data.AttackDamageLevel1;
@@ -33,6 +36,7 @@ public class TurretWeapon : MonoBehaviour
         bulletSFX = data.BulletSFX;
         ionProjectileSFX = data.IonProjectileSFX;
         impactSFX = data.ImpactSFX;
+        ionProjectileLifetime = data.IonProjectileLifetime;
     }
 
     public void UpgradeValues(FireSupportPlatformData data)
@@ -57,18 +61,39 @@ public class TurretWeapon : MonoBehaviour
         Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, range, hitMask);
         
         //debug tracer code
-        bool hitSomething = false;
-        Vector3 startPos = muzzle.position;
-        Vector3 endPos = hitSomething ? hit.point : startPos + muzzle.forward * range;
-
-        Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos);
-        //debug tracer code
+        
+        FireVFX(weaponType, hit);
 
         if (hit.collider == null) return;
 
         if (hit.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             damageable.ApplyDamage(new DamageInfo(damage, hit.collider.gameObject, hit.point));
+        }
+    }
+
+    void FireVFX(FireSupportType weaponType, RaycastHit hit)
+    {
+        bool hitSomething = hit.collider != null;
+        Vector3 startPos = muzzle.position;
+        Vector3 endPos = hitSomething ? hit.point : startPos + muzzle.forward * range;
+        
+        if (debugTracerPrefab != null)
+        {
+            Instantiate(debugTracerPrefab).GetComponent<BulletTracer>().Init(startPos, endPos, true);
+            return;
+        }
+        
+        //instantiate bullet prefab based on weaponType
+        switch (weaponType)
+        {
+            case FireSupportType.GunTurret:
+                if (bulletPrefab == null) break;
+                Instantiate(bulletPrefab).GetComponent<BulletTracer>().Init(startPos, endPos, false);
+                break;
+            case FireSupportType.IonTurret:
+                Instantiate(ionProjectilePrefab).GetComponent<IonProjectile>().Init(startPos, endPos, ionProjectileLifetime);
+                break;
         }
     }
 }

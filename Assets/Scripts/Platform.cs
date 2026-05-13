@@ -57,6 +57,7 @@ public class Platform : MonoBehaviour, IInteractable
         
         if (batteryController != null) PlayerBatteryPowerManager.Instance.UnregisterBatteryControllerEvent(batteryController);
         
+        
         Destroy(currentBuiltPlatform);
         currentBuiltPlatform = null;
         currentPlatformData = null;

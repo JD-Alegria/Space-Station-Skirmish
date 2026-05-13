@@ -37,6 +37,7 @@ public class PlayerBatteryPowerManager : MonoBehaviour
 
     public void UnregisterBatteryControllerEvent(BatteryController batteryController)
     {
+        currentBatteryReserves += batteryController.CurrentBatteryPowerAllocated;
         batteryController.OnPowerChanged -= HandleBatteryPowerChange;
     }
 

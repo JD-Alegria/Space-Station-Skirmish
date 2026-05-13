@@ -597,7 +597,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 64
-  debugTracerPrefab: {fileID: 449286825762472079, guid: 1105c04fe01cb254b831461d2eb3e1a7, type: 3}
+  debugTracerPrefab: {fileID: 0}
 --- !u!1 &3631858336989545996
 GameObject:
   m_ObjectHideFlags: 0

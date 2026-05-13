@@ -15,14 +15,17 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance;
     public static WaveState CurrentWaveState;
 
+    int waveCount = 0;
     float updateInterval = 0.1f;
     int activeShipCount = 0;
     List<ShipHealth> activeShips = new List<ShipHealth>();
     
+    public int WaveCount => waveCount;
     public int ActiveShipCount => activeShipCount;
 
     Coroutine waveTrackerRoutine;
-    public event Action<WaveState> OnWaveStateChange;
+    //input parameters: WaveState, int WaveCount, ThreatBudget
+    public event Action<WaveState, int, int> OnWaveStateChange;
 
     void Awake()
     {
@@ -82,7 +85,32 @@ public class WaveManager : MonoBehaviour
     void ChangeWaveState(WaveState newWaveState)
     {
         CurrentWaveState = newWaveState;
-        OnWaveStateChange?.Invoke(CurrentWaveState);
+        int threatBudget = 0;
+        switch (newWaveState)
+        {
+            case WaveState.Spawning:
+                waveCount++;
+                threatBudget = CalculateWaveBudget();
+                break;
+        }
+        OnWaveStateChange?.Invoke(CurrentWaveState, waveCount, threatBudget);
+    }
+
+    int CalculateWaveBudget()
+    {
+        switch (waveCount)
+        {
+            case 1:
+                return 8;
+            case 2:
+                return 12;
+            case 3:
+                return 16;
+        }
+        
+        int threatBudget = waveCount * 4;
+
+        return threatBudget;
     }
 
     void HandleWaveStateLogic()

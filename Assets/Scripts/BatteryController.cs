@@ -64,13 +64,11 @@ public class BatteryController : MonoBehaviour
             case PlatformTierLevel.Lvl1:
                 if (currentBatteryPowerAllocated >= platformData.BatteryPowerCostLevel1)
                 {
-                    Debug.Log("Platform already at maximum power.");
                     return;
                 }
 
                 if (PlayerBatteryPowerManager.Instance.CurrentBatteryReserves <= 0)
                 {
-                    Debug.Log("No Power in Reserves.");
                     return;
                 }
                 currentBatteryPowerAllocated++;
@@ -79,12 +77,10 @@ public class BatteryController : MonoBehaviour
             case PlatformTierLevel.Lvl2:
                 if (currentBatteryPowerAllocated >= platformData.BatteryPowerCostLevel2)
                 {
-                    Debug.Log("Platform already at maximum power.");
                     return;
                 }
                 if (PlayerBatteryPowerManager.Instance.CurrentBatteryReserves <= 0)
                 {
-                    Debug.Log("No Power in Reserves.");
                     return;
                 }
                 currentBatteryPowerAllocated++;
