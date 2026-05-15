@@ -12,12 +12,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text scrapCounter;
     [SerializeField] TMP_Text enemyShipsLeftText;
     [SerializeField] TMP_Text waveCounterText;
+    [SerializeField] TMP_Text stationHealthText;
     
     [Space]
     [SerializeField] GameObject emptyPlatformPanelUIPrefab;
     [SerializeField] GameObject spaceStationPanelUIPrefab;
     [SerializeField] Transform canvasTransform;
     [SerializeField] PlayerInteract playerInteract;
+
+    SpaceStationHealth stationHealth;
 
     GameObject currentPlatformPanelUI;
 
@@ -32,6 +35,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         playerInteract.OnClickAway += CloseCurrentPlatformUI;
+        
+        stationHealth = GameObject.FindGameObjectWithTag("SpaceStation").GetComponent<SpaceStationHealth>();
     }
 
     void OnDestroy()
@@ -50,6 +55,7 @@ public class UIManager : MonoBehaviour
         UpdateScrapCounter();
         UpdateShipsLeftText();
         UpdateWaveCounter();
+        UpdateStationHealthText();
     }
 
     void UpdateBatteryReserveCounter()
@@ -70,6 +76,13 @@ public class UIManager : MonoBehaviour
     void UpdateWaveCounter()
     {
         waveCounterText.text = "Wave Number: " + WaveManager.Instance.WaveCount;
+    }
+
+    void UpdateStationHealthText()
+    {
+        if (stationHealth == null) return;
+        
+        stationHealthText.text = "Station Health: " + (int)stationHealth.BaseHealth;
     }
 
     public void OpenPlatformUI(Platform platform)

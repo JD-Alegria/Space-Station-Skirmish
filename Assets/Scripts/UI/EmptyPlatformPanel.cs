@@ -24,13 +24,11 @@ public class EmptyPlatformPanel : PlatformPanel
 
     public void OnBuildDefensePlatformClicked()
     {
-        throw new NotImplementedException();
         platform.Build(defensePlatformData);
     }
 
     public void OnBuildEconomyPlatformClicked()
     {
-        throw new NotImplementedException();
         platform.Build(economyPlatformData);
     }
 }

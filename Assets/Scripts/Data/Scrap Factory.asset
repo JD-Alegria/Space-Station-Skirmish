@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da3d18ba5481b348b0e7831b20c0930, type: 3}
   m_Name: Scrap Factory
   m_EditorClassIdentifier: Assembly-CSharp::EconomyPlatformData
-  platformName: 
+  platformName: Scrap Factory
   platformType: 2
-  platformPrefab: {fileID: 0}
-  icon: {fileID: 0}
-  description: 
+  platformPrefab: {fileID: 4731976208635821585, guid: f8d45b7bf4772d440b8450a744749ae6, type: 3}
+  icon: {fileID: 21300000, guid: e8a2f0eeb5442864cb2055507a909eff, type: 3}
+  description: Generates scrap on a fixed time interval
   platformTierLevel: 0
-  maxHealth: 0
-  buildCost: 0
-  upgradeCost: 0
-  batteryPowerCostLevel1: 0
-  batteryPowerCostLevel2: 0
-  platformPanel: {fileID: 0}
-  scrapIntervalLevel1: 0
-  scrapIntervalLevel2: 0
-  scrapPerTickRateLevel1: 0
-  scrapPerTickRateLevel2: 0
+  maxHealth: 100
+  buildCost: 100
+  upgradeCost: 200
+  batteryPowerCostLevel1: 2
+  batteryPowerCostLevel2: 4
+  platformPanel: {fileID: 1009064840840493821, guid: 750548d800518ae4aa925381256d31e0, type: 3}
+  scrapTickRateLevel1: 2
+  scrapTickRateLevel2: 2
+  scrapPerTickLevel1: 25
+  scrapPerTickLevel2: 50

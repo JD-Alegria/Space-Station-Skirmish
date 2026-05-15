@@ -18,7 +18,7 @@ public class WaveManager : MonoBehaviour
     int waveCount = 0;
     float updateInterval = 0.1f;
     int activeShipCount = 0;
-    List<ShipHealth> activeShips = new List<ShipHealth>();
+    List<ShipHealth> activeShips = new();
     
     public int WaveCount => waveCount;
     public int ActiveShipCount => activeShipCount;
@@ -69,7 +69,7 @@ public class WaveManager : MonoBehaviour
             switch (CurrentWaveState)
             {
                 case WaveState.Spawning:
-                    if (activeShipCount >= SpawnManager.Instance.OneShotShipsToSpawn)
+                    if (!SpawnManager.Instance.IsSpawning)
                         ChangeWaveState(WaveState.Active);
                     break;
                 case WaveState.Active:

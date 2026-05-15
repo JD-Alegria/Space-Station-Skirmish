@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6267be2b620e5064caaebe92dee8492c, type: 3}
   m_Name: Shield Generator
   m_EditorClassIdentifier: Assembly-CSharp::DefenseSupportPlatformData
-  platformName: 
-  platformType: 0
-  platformPrefab: {fileID: 0}
-  icon: {fileID: 0}
-  description: 
+  platformName: Shield Generator
+  platformType: 1
+  platformPrefab: {fileID: 5252752393070907650, guid: a61ebfb4823e2be44b9f2f4317e1a8ea, type: 3}
+  icon: {fileID: 21300000, guid: 10df4f28c78b9e545b415c5ae37b775e, type: 3}
+  description: Gives a damage reduction modifier to base
   platformTierLevel: 0
-  maxHealth: 0
-  buildCost: 0
-  upgradeCost: 0
-  batteryPowerCostLevel1: 0
-  batteryPowerCostLevel2: 0
-  platformPanel: {fileID: 0}
-  damageReductionLevel1: 0
-  damageReductionLevel2: 0
+  maxHealth: 100
+  buildCost: 100
+  upgradeCost: 2
+  batteryPowerCostLevel1: 2
+  batteryPowerCostLevel2: 4
+  platformPanel: {fileID: 1009064840840493821, guid: 0559c14f8adbb504680824d9c6881f9a, type: 3}
+  damageReductionLevel1: 33
+  damageReductionLevel2: 50

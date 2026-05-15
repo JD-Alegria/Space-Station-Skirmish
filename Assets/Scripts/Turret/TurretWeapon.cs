@@ -1,8 +1,12 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
 public class TurretWeapon : MonoBehaviour
 {
+    AudioSource audioSource;
+    
     FireSupportType weaponType;
     float range = 100f;
     float fireRate = 1f;
@@ -14,15 +18,25 @@ public class TurretWeapon : MonoBehaviour
     [SerializeField] GameObject debugTracerPrefab;
     
     [Header("VFX")]
+    float muzzleFlashDuration;
     GameObject bulletPrefab;
+    GameObject muzzleFirePrefab;
     GameObject ionProjectilePrefab;
     GameObject impactFxPrefab;
+
+    GameObject muzzleLight;
 
     [Header("SFX")] 
     AudioClip bulletSFX;
     AudioClip ionProjectileSFX;
     AudioClip impactSFX;
-    
+
+    Coroutine muzzleFlashCoroutine;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void Init(FireSupportPlatformData data)
     {
@@ -30,13 +44,19 @@ public class TurretWeapon : MonoBehaviour
         range = data.AttackRange;
         fireRate = data.AttackFireRateLevel1;
         damage = data.AttackDamageLevel1;
+        
+        muzzleFlashDuration = data.MuzzleFlashDuration;
         bulletPrefab = data.BulletPrefab;
         ionProjectilePrefab = data.IonProjectilePrefab;
         impactFxPrefab = data.ImpactFxPrefab;
         bulletSFX = data.BulletSFX;
+        muzzleFirePrefab = data.MuzzleFirePrefab;
         ionProjectileSFX = data.IonProjectileSFX;
         impactSFX = data.ImpactSFX;
         ionProjectileLifetime = data.IonProjectileLifetime;
+        
+        if (weaponType == FireSupportType.GunTurret)
+            muzzleLight = Instantiate(muzzleFirePrefab, muzzle);
     }
 
     public void UpgradeValues(FireSupportPlatformData data)
@@ -84,6 +104,17 @@ public class TurretWeapon : MonoBehaviour
             return;
         }
         
+        //fire muzzle light
+        if (muzzleFlashCoroutine != null)
+        {
+            StopCoroutine(muzzleFlashCoroutine);
+            muzzleFlashCoroutine = null;
+        }
+        muzzleFlashCoroutine = StartCoroutine(MuzzleFlashRoutine());
+        
+        //play vulcan sound
+        PlayMuzzleFireSound();
+        
         //instantiate bullet prefab based on weaponType
         switch (weaponType)
         {
@@ -95,5 +126,33 @@ public class TurretWeapon : MonoBehaviour
                 Instantiate(ionProjectilePrefab).GetComponent<IonProjectile>().Init(startPos, endPos, ionProjectileLifetime);
                 break;
         }
+    }
+
+    void PlayMuzzleFireSound()
+    {
+        switch (weaponType)
+        {
+            case FireSupportType.GunTurret:
+                audioSource.PlayOneShot(bulletSFX, 0.33f);
+                break;
+            case FireSupportType.IonTurret:
+                audioSource.PlayOneShot(ionProjectileSFX, 0.33f);
+                break;
+        }
+    }
+
+    IEnumerator MuzzleFlashRoutine()
+    {
+        if (weaponType == FireSupportType.IonTurret)
+        {
+            muzzleFlashCoroutine = null;
+            yield break;
+        }
+        
+        WaitForSeconds wait = new WaitForSeconds(muzzleFlashDuration);
+        muzzleLight.SetActive(true);
+        yield return new WaitForSeconds(muzzleFlashDuration);
+        muzzleLight.SetActive(false);
+        muzzleFlashCoroutine = null;
     }
 }

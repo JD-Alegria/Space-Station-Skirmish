@@ -1318,8 +1318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EmptyPlatformPanel
   gunTurretPlatformData: {fileID: 11400000, guid: 73fed9214a2c1db42bcb0357003e5df8, type: 2}
   ionTurretPlatformData: {fileID: 11400000, guid: e8a601f3fd1cc124aa979e1959d9fd64, type: 2}
-  defensePlatformData: {fileID: 0}
-  economyPlatformData: {fileID: 0}
+  defensePlatformData: {fileID: 11400000, guid: 5aa2f596ac6898b499bf2f719a3386ba, type: 2}
+  economyPlatformData: {fileID: 11400000, guid: a2c584159b148f64ba0cbfad1d425e37, type: 2}
 --- !u!1 &1017693641964239464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1392,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 49.7, y: -27.5}
-  m_SizeDelta: {x: 0, y: 45}
+  m_SizeDelta: {x: 59.4, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3794935610940521908
 CanvasRenderer:
@@ -7692,7 +7692,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 49.7, y: -27.5}
-  m_SizeDelta: {x: 0, y: 45}
+  m_SizeDelta: {x: 59.4, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8484615820591777947
 CanvasRenderer:

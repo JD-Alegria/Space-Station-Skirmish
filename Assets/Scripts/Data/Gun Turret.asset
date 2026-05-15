@@ -27,14 +27,16 @@ MonoBehaviour:
   fireSupportType: 0
   detectionRadius: 50
   attackRange: 45
-  attackDamageLevel1: 50
-  attackDamageLevel2: 1
-  attackFireRateLevel1: 2
-  attackFireRateLevel2: 2.5
+  attackDamageLevel1: 10
+  attackDamageLevel2: 20
+  attackFireRateLevel1: 3.5
+  attackFireRateLevel2: 4.2
+  muzzleFlashDuration: 0.1
   bulletPrefab: {fileID: 172065161708692102, guid: df476f2c908598240a3bf62cc3ea2cf6, type: 3}
+  muzzleFirePrefab: {fileID: 3046924595735801780, guid: 6341f267321a40d46821cd52cc5fca64, type: 3}
   ionProjectilePrefab: {fileID: 0}
   impactFxPrefab: {fileID: 0}
   ionProjectileLifetime: 0.5
-  bulletSFX: {fileID: 0}
+  bulletSFX: {fileID: 8300000, guid: 77f472bf965d27140a538f2890858274, type: 3}
   ionProjectileSFX: {fileID: 0}
   impactSFX: {fileID: 0}

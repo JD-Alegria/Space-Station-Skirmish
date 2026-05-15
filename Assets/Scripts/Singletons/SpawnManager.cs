@@ -18,16 +18,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<Transform> spawnPos;
     [SerializeField] List<GameObject> spawnPrefabs;
     [SerializeField] Transform spaceStationTransform;
-    [Tooltip("Spawns Ships, then ends SpawnManager. If zero, then ignored. Primarily a Debug Tool.")]
-    [SerializeField] int oneShotShipsToSpawn;
     [SerializeField] float spawnDelay = 1f;
+
+    bool isSpawning = false;
+    
+    public bool IsSpawning => isSpawning;
 
     [Header("Debug Force Spawn")]
     [SerializeField] bool forceSpawnFightersOnly = false;
     [SerializeField] bool forceSpawnCorvettesOnly = false;
-    
-    //debug tool for now
-    public int OneShotShipsToSpawn => oneShotShipsToSpawn;
 
     Coroutine spawnRoutine;
 
@@ -94,39 +93,39 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawnPrefabs.Count == 0) yield break;
         if (WaveManager.CurrentWaveState != WaveState.Spawning) yield break;
+
+        bool isSpawnRandom;
+        if (spawnIndex == -1) isSpawnRandom = true;
+        else isSpawnRandom = false;
+        isSpawning = true;
         
         while (threatBudget >= 0)
         {
             WaitForSeconds wait = new WaitForSeconds(spawnDelay);
             
-            if (spawnIndex == -1)
+            if (isSpawnRandom)
             {
                 spawnIndex = Random.Range(0, spawnPrefabs.Count);
             }
 
             if (spawnIndex == 0)
             {
-                for (int i = 0; i < oneShotShipsToSpawn; i++)
-                {
                     Vector3 spawnPos = GetRandomSpawnPos();
                     Quaternion lookDirection = GetLookDirection(spawnPos);
                     SpawnFighter(spawnIndex, spawnPos, lookDirection);
                     threatBudget -= fighterData.ThreatCost;
                     yield return wait;
-                }
             }
             else if (spawnIndex == 1)
             {
-                for (int i = 0; i < oneShotShipsToSpawn; i++)
-                {
                     Vector3 spawnPos = GetRandomSpawnPos();
                     Quaternion lookDirection = GetLookDirection(spawnPos);
                     SpawnCorvette(spawnIndex, spawnPos, lookDirection);
                     threatBudget -= corvetteData.ThreatCost;
                     yield return wait;
-                }
             }
         }
+        isSpawning = false;
         spawnRoutine = null;
     }
 
