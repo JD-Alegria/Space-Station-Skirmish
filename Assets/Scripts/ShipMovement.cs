@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 //Vector movement
 public class ShipMovement : MonoBehaviour
@@ -44,5 +45,23 @@ public class ShipMovement : MonoBehaviour
             transform.rotation,
             targetRotation,
             rotationSpeed * Time.deltaTime);
+    }
+
+    public IEnumerator SlowToStop(float duration = 2.5f)
+    {
+        float startSpeed = movementSpeed;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            movementSpeed = Mathf.Lerp(startSpeed, 0f, t);
+            
+            yield return null;
+        }
+        
+        movementSpeed = 0f;
     }
 }

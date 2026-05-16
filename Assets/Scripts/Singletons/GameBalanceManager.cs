@@ -10,12 +10,14 @@ public class GameBalanceManager : MonoBehaviour
     [SerializeField] int maxBatteryPowerCapacity = 10;
     [SerializeField] int batteryPowerUpgradeCost = 10;
     [SerializeField] int numberOfWavesToWin = 5;
+    [SerializeField] int waveLevelToStartSpawningCorvettes = 3;
 
     public int StartingMoney => startingMoney;
     public float StartingBaseHealth => startingBaseHealth;
     public int StartingBatteryPowerCapacity => startingBatteryPowerCapacity;
     public int BatteryPowerUpgradeCost => batteryPowerUpgradeCost;
     public int MaxBatteryPowerCapacity => maxBatteryPowerCapacity;
+    public int WaveLevelToStartSpawningCorvettes => waveLevelToStartSpawningCorvettes;
 
     void Awake()
     {

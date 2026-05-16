@@ -16,16 +16,20 @@ MonoBehaviour:
   shipType: 0
   shipPrefab: {fileID: 6072250409717738023, guid: 910721ed6d2ad94408a1206f73b272d6, type: 3}
   maxHealth: 100
-  movementSpeed: 5
+  movementSpeed: 6.5
   rotationSpeed: 1
-  attackDamage: 25
+  attackDamage: 5
   attackRate: 1
   attackRange: 10
   threatCost: 2
-  bulletPrefab: {fileID: 0}
-  ionProjectilePrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4464068626432495449, guid: bab1fe2c8f5911347a5c9730dfb4f9cd, type: 3}
+  muzzleEffectPrefab: {fileID: 5892226431123288623, guid: 4dfcea4ddc342304191cee97ae16d44f, type: 3}
   impactFxPrefab: {fileID: 0}
-  bulletSFX: {fileID: 0}
-  ionProjectileSFX: {fileID: 0}
+  deathVFXPrefab: {fileID: 100014, guid: 2822c94c3c0b01441ae7cd70a461104c, type: 3}
+  bulletSFX: {fileID: 8300000, guid: 3fef0d91731efdf4abf4e5e214f6cde0, type: 3}
   impactSFX: {fileID: 0}
-  scrapValue: 10
+  deathSFXs:
+  - {fileID: 8300000, guid: 1fbcc7618d7f76447b72790e90f7e64a, type: 3}
+  - {fileID: 8300000, guid: 87d06297a492031419e8910a5df7565c, type: 3}
+  - {fileID: 8300000, guid: abf1ee3800d919a44a473819a9a09cce, type: 3}
+  scrapValue: 5

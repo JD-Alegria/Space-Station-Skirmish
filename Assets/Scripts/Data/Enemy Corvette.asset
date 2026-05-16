@@ -18,14 +18,18 @@ MonoBehaviour:
   maxHealth: 150
   movementSpeed: 3.5
   rotationSpeed: 0.5
-  attackDamage: 50
+  attackDamage: 10
   attackRate: 1
-  attackRange: 10
+  attackRange: 30
   threatCost: 10
-  bulletPrefab: {fileID: 0}
-  ionProjectilePrefab: {fileID: 0}
+  bulletPrefab: {fileID: 7380421968515400653, guid: ca33c51321200c94fb1b6382ba95cc8e, type: 3}
+  muzzleEffectPrefab: {fileID: 6886462372538699154, guid: 448ab88e9621c8f4cb9f6d66c7f9760e, type: 3}
   impactFxPrefab: {fileID: 0}
-  bulletSFX: {fileID: 0}
-  ionProjectileSFX: {fileID: 0}
+  deathVFXPrefab: {fileID: 0}
+  bulletSFX: {fileID: 8300000, guid: a12b977efe05c1a4da1df1cd60364470, type: 3}
   impactSFX: {fileID: 0}
-  scrapValue: 30
+  deathSFXs:
+  - {fileID: 8300000, guid: 1fbcc7618d7f76447b72790e90f7e64a, type: 3}
+  - {fileID: 8300000, guid: 87d06297a492031419e8910a5df7565c, type: 3}
+  - {fileID: 8300000, guid: abf1ee3800d919a44a473819a9a09cce, type: 3}
+  scrapValue: 25

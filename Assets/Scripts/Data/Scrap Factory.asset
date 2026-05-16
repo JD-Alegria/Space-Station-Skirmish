@@ -20,11 +20,12 @@ MonoBehaviour:
   platformTierLevel: 0
   maxHealth: 100
   buildCost: 100
+  buildTime: 2
   upgradeCost: 200
   batteryPowerCostLevel1: 2
   batteryPowerCostLevel2: 4
   platformPanel: {fileID: 1009064840840493821, guid: 750548d800518ae4aa925381256d31e0, type: 3}
-  scrapTickRateLevel1: 2
-  scrapTickRateLevel2: 2
-  scrapPerTickLevel1: 25
-  scrapPerTickLevel2: 50
+  scrapTickRateLevel1: 5
+  scrapTickRateLevel2: 5
+  scrapPerTickLevel1: 10
+  scrapPerTickLevel2: 20

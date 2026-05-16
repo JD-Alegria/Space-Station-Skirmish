@@ -19,13 +19,14 @@ MonoBehaviour:
   description: Just a sample turret for now.
   platformTierLevel: 0
   maxHealth: 100
-  buildCost: 100
-  upgradeCost: 100
+  buildCost: 200
+  buildTime: 2
+  upgradeCost: 200
   batteryPowerCostLevel1: 2
   batteryPowerCostLevel2: 3
   platformPanel: {fileID: 1009064840840493821, guid: 394ca2a2e7e5357498f7492f31d8b470, type: 3}
   fireSupportType: 0
-  detectionRadius: 50
+  detectionRadius: 60
   attackRange: 45
   attackDamageLevel1: 10
   attackDamageLevel2: 20

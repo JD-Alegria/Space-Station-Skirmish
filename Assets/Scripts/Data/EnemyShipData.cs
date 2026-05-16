@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum ShipType
 {
@@ -44,20 +45,22 @@ public class EnemyShipData : ScriptableObject
     [Space]
     [Header("VFX")]
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] GameObject ionProjectilePrefab;
+    [SerializeField] GameObject muzzleEffectPrefab;
     [SerializeField] GameObject impactFxPrefab;
+    [SerializeField] GameObject deathVFXPrefab;
 
     [Header("SFX")] 
     [SerializeField] AudioClip bulletSFX;
-    [SerializeField] AudioClip ionProjectileSFX;
     [SerializeField] AudioClip impactSFX;
+    [SerializeField] List<AudioClip> deathSFXs;
     
     public GameObject BulletPrefab => bulletPrefab;
-    public GameObject IonProjectilePrefab => ionProjectilePrefab;
+    public GameObject MuzzleEffectPrefab => muzzleEffectPrefab;
     public GameObject ImpactFxPrefab => impactFxPrefab;
+    public GameObject DeathVFXPrefab => deathVFXPrefab;
     public AudioClip BulletSFX => bulletSFX;
-    public AudioClip IonProjectileSFX => ionProjectileSFX;
     public AudioClip ImpactSFX => impactSFX;
+    public List<AudioClip> DeathSFXs => deathSFXs;
 
     [Header("Economic Values")]
     [SerializeField] int scrapValue;

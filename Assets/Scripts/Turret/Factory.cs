@@ -70,6 +70,8 @@ public class Factory : MonoBehaviour
         while (true)
         {
             yield return wait;
+
+            if (WaveManager.CurrentWaveState == WaveState.Paused) continue;
             
             EconomyManager.Instance.AddScrap(scrapPerTick);
         }

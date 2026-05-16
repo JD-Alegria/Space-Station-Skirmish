@@ -79,7 +79,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         //only spawnfighters
-        if (waveCount < 5)
+        if (waveCount <= GameBalanceManager.Instance.WaveLevelToStartSpawningCorvettes)
         {
             spawnRoutine = StartCoroutine(SpawnRandomShip(threatBudget, 0));
             return;
@@ -133,7 +133,7 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject newFighter = Instantiate(spawnPrefabs[index], spawnPos, lookDirection);
         Ship newFighterShip = newFighter.GetComponent<Ship>();
-        newFighterShip.Init(fighterData);
+        newFighterShip.Init(fighterData, spaceStationTransform);
         
         WaveManager.Instance.RegisterShip(newFighterShip.GetComponent<ShipHealth>());
     }
@@ -142,7 +142,7 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject newCorvette = Instantiate(spawnPrefabs[index], spawnPos, lookDirection);
         Ship newCorvetteShip = newCorvette.GetComponent<Ship>();
-        newCorvetteShip.Init(corvetteData);
+        newCorvetteShip.Init(corvetteData, spaceStationTransform);
         
         WaveManager.Instance.RegisterShip(newCorvette.GetComponent<ShipHealth>());
     }

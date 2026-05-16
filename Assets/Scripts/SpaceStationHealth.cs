@@ -46,7 +46,7 @@ public class SpaceStationHealth : MonoBehaviour, IDamageable
             totalReduction += shieldGenerator.DamageReductionModifier;
         }
         totalReduction = Mathf.Clamp01(totalReduction);
-        float finalDamage = damageInfo.Amount * totalReduction;
+        float finalDamage = damageInfo.Amount * (1f - totalReduction);
         
         baseHealth -= finalDamage;
 

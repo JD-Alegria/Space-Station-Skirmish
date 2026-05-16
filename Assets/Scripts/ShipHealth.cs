@@ -33,16 +33,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
 
         if (health <= 0f)
         {
-            Die();
+            OnDeath?.Invoke(this);
         }
-    }
-
-    void Die()
-    {
-        // replace with an event
-        EconomyManager.Instance.AddScrap(scrapValue);
-        OnDeath?.Invoke(this);
-        
-        Destroy(gameObject);
     }
 }

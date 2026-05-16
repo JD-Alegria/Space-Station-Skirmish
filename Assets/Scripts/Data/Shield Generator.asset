@@ -20,6 +20,7 @@ MonoBehaviour:
   platformTierLevel: 0
   maxHealth: 100
   buildCost: 100
+  buildTime: 2
   upgradeCost: 2
   batteryPowerCostLevel1: 2
   batteryPowerCostLevel2: 4

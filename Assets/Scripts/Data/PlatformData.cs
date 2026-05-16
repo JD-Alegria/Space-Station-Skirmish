@@ -33,6 +33,7 @@ public abstract class PlatformData : ScriptableObject
     [SerializeField] PlatformTierLevel platformTierLevel =  PlatformTierLevel.Lvl1;
     [SerializeField] int maxHealth;
     [SerializeField] int buildCost;
+    [SerializeField] float buildTime = 2f;
     [SerializeField] int upgradeCost;
     [SerializeField] int batteryPowerCostLevel1;
     [SerializeField] int batteryPowerCostLevel2;
@@ -40,6 +41,7 @@ public abstract class PlatformData : ScriptableObject
     public PlatformTierLevel PlatformTierLevel => platformTierLevel;
     public int MaxHealth => maxHealth;
     public int BuildCost => buildCost;
+    public float BuildTime => buildTime;
     public int UpgradeCost => upgradeCost;
     public int BatteryPowerCostLevel1 => batteryPowerCostLevel1;
     public int BatteryPowerCostLevel2 => batteryPowerCostLevel2;

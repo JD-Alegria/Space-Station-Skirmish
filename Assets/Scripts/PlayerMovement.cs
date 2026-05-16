@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] InputActionReference moveAction;
-    [SerializeField] float cameraSpeed = 5f;
+    [SerializeField] InputActionReference sprintAction;
+    [SerializeField] float cameraSpeed = 70f;
+    [SerializeField] float cameraSprintSpeed = 140f;
     [SerializeField] Camera playerCamera;
     
     [Header("Zoom Settings")]
@@ -24,11 +26,13 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         moveAction.action.Enable();
+        sprintAction.action.Enable();
     }
     
     void OnDisable()
     {
         moveAction.action.Disable();
+        sprintAction.action.Disable();
     }
 
     void Update()
@@ -40,13 +44,17 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayerCamera()
     {
         Vector2 input = moveAction.action.ReadValue<Vector2>();
+        bool shiftPressed = sprintAction.action.IsPressed();
         Vector3 movement =  new Vector3(input.x, 0, input.y);
 
         if (movement.magnitude > 1f)
         {
             movement.Normalize();
         }
-        transform.position += movement * cameraSpeed * Time.deltaTime;
+        if (!shiftPressed)
+            transform.position += movement * cameraSpeed * Time.deltaTime;
+        else
+            transform.position += movement * cameraSprintSpeed * Time.deltaTime;
     }
 
     void ZoomCamera()

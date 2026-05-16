@@ -19,14 +19,15 @@ MonoBehaviour:
   description: Ion Turret
   platformTierLevel: 0
   maxHealth: 100
-  buildCost: 100
-  upgradeCost: 100
+  buildCost: 200
+  buildTime: 2
+  upgradeCost: 200
   batteryPowerCostLevel1: 2
   batteryPowerCostLevel2: 3
   platformPanel: {fileID: 1009064840840493821, guid: 394ca2a2e7e5357498f7492f31d8b470, type: 3}
   fireSupportType: 1
-  detectionRadius: 50
-  attackRange: 45
+  detectionRadius: 60
+  attackRange: 50
   attackDamageLevel1: 100
   attackDamageLevel2: 1
   attackFireRateLevel1: 0.31

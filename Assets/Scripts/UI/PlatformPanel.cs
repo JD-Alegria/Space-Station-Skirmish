@@ -13,16 +13,22 @@ public class PlatformPanel : MonoBehaviour
     
     public void OnIncreasePowerClicked()
     {
+        if (platform.IsBuilding) return;
+        
         platform.IncreasePower();
     }
 
     public void OnDecreasePowerClicked()
     {
+        if (platform.IsBuilding) return;
+        
         platform.DecreasePower();
     }
 
     public void OnDestroyClicked()
     {
+        if (platform.IsBuilding) return;
+        
         platform.DestroyBuilding();
     }
 

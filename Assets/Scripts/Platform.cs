@@ -1,18 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using System.Collections;
 
 public class Platform : MonoBehaviour, IInteractable
 {
     BatteryController batteryController;
     PlatformData currentPlatformData;
     GameObject currentBuiltPlatform;
+    bool isBuilding = false;
+    
     [SerializeField] Transform buildTransform;
     
     public Transform BuildTransform => buildTransform;
     public PlatformData CurrentPlatformData => currentPlatformData;
     public BatteryController BatteryController => batteryController;
     public bool HasPlatform => currentPlatformData != null;
+    public bool IsBuilding => isBuilding;
+
+    Coroutine buildCoroutine;
+    Coroutine destroyCoroutine;
     
 
     void Awake()
@@ -36,8 +43,24 @@ public class Platform : MonoBehaviour, IInteractable
     {
         if (HasPlatform) return;
         if (!EconomyManager.Instance.TryPurchase(platformData.BuildCost)) return;
+        if (isBuilding) return;
         
         currentPlatformData = platformData;
+
+        if (buildCoroutine != null)
+        {
+            StopCoroutine(buildCoroutine);
+            buildCoroutine = null;
+        }
+        buildCoroutine = StartCoroutine(BuildRoutine(platformData));
+        isBuilding = true;
+    }
+
+    IEnumerator BuildRoutine(PlatformData platformData)
+    {
+        WaitForSeconds wait = new WaitForSeconds(platformData.BuildTime);
+        yield return wait;
+        
         currentBuiltPlatform = Instantiate(
             platformData.PlatformPrefab,
             buildTransform.position,
@@ -49,11 +72,26 @@ public class Platform : MonoBehaviour, IInteractable
         batteryController.Init(platformData);
 
         UIManager.Instance.RefreshPlatformUI(this);
+        isBuilding = false;
     }
 
     public void DestroyBuilding()
     {
         if (!HasPlatform) return;
+
+        if (destroyCoroutine != null)
+        {
+            StopCoroutine(destroyCoroutine);
+            destroyCoroutine = null;
+        }
+
+        destroyCoroutine = StartCoroutine(DestroyRoutine(currentPlatformData));
+    }
+
+    IEnumerator DestroyRoutine(PlatformData platformData)
+    {
+        WaitForSeconds wait = new WaitForSeconds(platformData.BuildTime);
+        yield return wait;
         
         if (batteryController != null) PlayerBatteryPowerManager.Instance.UnregisterBatteryControllerEvent(batteryController);
         
