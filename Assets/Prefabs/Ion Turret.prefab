@@ -542,8 +542,8 @@ MonoBehaviour:
   TrackingType: 1
   Mount: {fileID: 5041893504542265928}
   Swivel: {fileID: 6722743856162313788}
-  HeadingTrackingSpeed: 2
-  ElevationTrackingSpeed: 2
+  HeadingTrackingSpeed: 2.5
+  ElevationTrackingSpeed: 2.5
   headingVetor: {x: 0, y: 0, z: 0}
   HeadingLimit: {x: -181, y: 180}
   ElevationLimit: {x: -60, y: 60}

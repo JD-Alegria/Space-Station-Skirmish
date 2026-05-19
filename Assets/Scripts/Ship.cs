@@ -113,6 +113,12 @@ public class Ship : MonoBehaviour
     {
         shipMovement.enabled = false;
         shipAttack.enabled = false;
+        if (commandingFireRoutine != null)
+        {
+            StopCoroutine(commandingFireRoutine);
+            commandingFireRoutine = null;
+        }
+        
         EconomyManager.Instance.AddScrap(data.ScrapValue);
         PlayExplosionEffects();
         Destroy(gameObject);
@@ -121,6 +127,11 @@ public class Ship : MonoBehaviour
     IEnumerator ControlledDeathRoutine()
     {
         shipAttack.enabled = false;
+        if (commandingFireRoutine != null)
+        {
+            StopCoroutine(commandingFireRoutine);
+            commandingFireRoutine = null;
+        }
         
         //play death effects
         foreach (var fire in deathFireVFX)
@@ -129,6 +140,7 @@ public class Ship : MonoBehaviour
         }
         int deathSFXIndex = Random.Range(0, data.DeathSFXs.Count);
         audioSource.PlayOneShot(data.DeathSFXs[deathSFXIndex], 0.66f);
+        EconomyManager.Instance.AddScrap(data.ScrapValue);
         
         yield return shipMovement.SlowToStop();
         Destroy(gameObject);

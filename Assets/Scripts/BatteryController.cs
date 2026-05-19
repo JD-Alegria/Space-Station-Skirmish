@@ -93,7 +93,6 @@ public class BatteryController : MonoBehaviour
     {
         if (currentBatteryPowerAllocated <= 0)
         {
-            Debug.Log("Platform already has zero power.");
             return;
         }
         currentBatteryPowerAllocated--;

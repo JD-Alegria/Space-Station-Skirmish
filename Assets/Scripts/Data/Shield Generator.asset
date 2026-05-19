@@ -19,7 +19,7 @@ MonoBehaviour:
   description: Gives a damage reduction modifier to base
   platformTierLevel: 0
   maxHealth: 100
-  buildCost: 100
+  buildCost: 400
   buildTime: 2
   upgradeCost: 2
   batteryPowerCostLevel1: 2

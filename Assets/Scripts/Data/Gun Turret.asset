@@ -28,9 +28,9 @@ MonoBehaviour:
   fireSupportType: 0
   detectionRadius: 60
   attackRange: 45
-  attackDamageLevel1: 10
-  attackDamageLevel2: 20
-  attackFireRateLevel1: 3.5
+  attackDamageLevel1: 15
+  attackDamageLevel2: 25
+  attackFireRateLevel1: 3.7
   attackFireRateLevel2: 4.2
   muzzleFlashDuration: 0.1
   bulletPrefab: {fileID: 172065161708692102, guid: df476f2c908598240a3bf62cc3ea2cf6, type: 3}

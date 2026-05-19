@@ -19,7 +19,7 @@ MonoBehaviour:
   description: Generates scrap on a fixed time interval
   platformTierLevel: 0
   maxHealth: 100
-  buildCost: 100
+  buildCost: 400
   buildTime: 2
   upgradeCost: 200
   batteryPowerCostLevel1: 2

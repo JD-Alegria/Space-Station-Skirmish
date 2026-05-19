@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPercent: 25
-  speed: 5
+  speed: 40
   minValue: 0
   maxValue: 100
   valueLimit: 100

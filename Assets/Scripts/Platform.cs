@@ -99,6 +99,7 @@ public class Platform : MonoBehaviour, IInteractable
         Destroy(currentBuiltPlatform);
         currentBuiltPlatform = null;
         currentPlatformData = null;
+        EconomyManager.Instance.AddScrap(platformData.BuildCost/2);
 
         UIManager.Instance.RefreshPlatformUI(this);
     }

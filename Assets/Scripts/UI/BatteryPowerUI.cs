@@ -32,7 +32,7 @@ public class BatteryPowerUI : MonoBehaviour
 
     void HandleBatteryReservesChanged()
     {
-        if (nextUnpoweredBatteryImageIndex + 1 > unpoweredBatteryImages.Count) return;
+        if (nextUnpoweredBatteryImageIndex >= unpoweredBatteryImages.Count) return;
         
         unpoweredBatteryImages[nextUnpoweredBatteryImageIndex].SetActive(true);
         nextUnpoweredBatteryImageIndex++;
@@ -40,23 +40,26 @@ public class BatteryPowerUI : MonoBehaviour
 
     void HandlePowerAllocationChanged(int powerChange)
     {
+        int index = GetNextActiveBatteryIndex();
+        
         if (powerChange > 0)
         {
-            //power reserves decreased
-            poweredBatteryImages[GetNextActiveBatteryIndex()].SetActive(false);
+            if (index < 0 || index >= poweredBatteryImages.Count) return;
+            poweredBatteryImages[index].SetActive(false);
         }
         
-        // power reserves increased
         if (powerChange < 0)
         {
-            if (GetNextActiveBatteryIndex() + 1 > poweredBatteryImages.Count) return;
-            if (GetNextActiveBatteryIndex() == -1)
+            if (index == -1)
             {
                 poweredBatteryImages[0].SetActive(true);
                 return;
             }
+
+            int nextIndex = index + 1;
+            if (nextIndex >= poweredBatteryImages.Count) return;
             
-            poweredBatteryImages[GetNextActiveBatteryIndex() + 1].SetActive(true);
+            poweredBatteryImages[nextIndex].SetActive(true);
         }
     }
 
@@ -64,7 +67,7 @@ public class BatteryPowerUI : MonoBehaviour
     {
         for (int i = 0; i < poweredBatteryImages.Count; i++)
         {
-            if (i + 1 >= poweredBatteryImages.Count)
+            if (i + 1 > poweredBatteryImages.Count)
                 return i;
             
             if (poweredBatteryImages[i].activeSelf)

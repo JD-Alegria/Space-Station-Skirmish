@@ -19,7 +19,7 @@ MonoBehaviour:
   description: Ion Turret
   platformTierLevel: 0
   maxHealth: 100
-  buildCost: 200
+  buildCost: 350
   buildTime: 2
   upgradeCost: 200
   batteryPowerCostLevel1: 2

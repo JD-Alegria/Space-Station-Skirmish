@@ -18,8 +18,8 @@ MonoBehaviour:
   maxHealth: 100
   movementSpeed: 6.5
   rotationSpeed: 1
-  attackDamage: 5
-  attackRate: 1
+  attackDamage: 3
+  attackRate: 0.8
   attackRange: 10
   threatCost: 2
   bulletPrefab: {fileID: 4464068626432495449, guid: bab1fe2c8f5911347a5c9730dfb4f9cd, type: 3}
@@ -32,4 +32,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1fbcc7618d7f76447b72790e90f7e64a, type: 3}
   - {fileID: 8300000, guid: 87d06297a492031419e8910a5df7565c, type: 3}
   - {fileID: 8300000, guid: abf1ee3800d919a44a473819a9a09cce, type: 3}
-  scrapValue: 5
+  scrapValue: 50
