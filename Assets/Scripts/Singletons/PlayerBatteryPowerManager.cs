@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerBatteryPowerManager : MonoBehaviour
@@ -5,9 +6,10 @@ public class PlayerBatteryPowerManager : MonoBehaviour
     public static PlayerBatteryPowerManager Instance;
 
     int currentBatteryReserves;
-    
-    
     public int CurrentBatteryReserves => currentBatteryReserves;
+    
+    public static Action OnBatteryReservesUpgraded;
+    public static Action<int> OnBatteryAllocationChanged;
 
     void Awake()
     {
@@ -27,6 +29,7 @@ public class PlayerBatteryPowerManager : MonoBehaviour
         if (EconomyManager.Instance.TryPurchase(GameBalanceManager.Instance.BatteryPowerUpgradeCost))
         {
             currentBatteryReserves++;
+            OnBatteryReservesUpgraded?.Invoke();
         }
     }
 
@@ -44,6 +47,7 @@ public class PlayerBatteryPowerManager : MonoBehaviour
     void HandleBatteryPowerChange(int batteryPowerChange)
     {
         currentBatteryReserves += batteryPowerChange;
+        OnBatteryAllocationChanged?.Invoke(batteryPowerChange);
     }
     
 }

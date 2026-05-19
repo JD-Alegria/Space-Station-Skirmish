@@ -8,11 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     
     [Header("Text Field References")]
-    [SerializeField] TMP_Text batteryReserveCounter;
     [SerializeField] TMP_Text scrapCounter;
-    [SerializeField] TMP_Text enemyShipsLeftText;
     [SerializeField] TMP_Text waveCounterText;
-    [SerializeField] TMP_Text stationHealthText;
     
     [Space]
     [SerializeField] GameObject emptyPlatformPanelUIPrefab;
@@ -51,16 +48,8 @@ public class UIManager : MonoBehaviour
 
     void UpdateTextOnScreen()
     {
-        UpdateBatteryReserveCounter();
         UpdateScrapCounter();
-        UpdateShipsLeftText();
         UpdateWaveCounter();
-        UpdateStationHealthText();
-    }
-
-    void UpdateBatteryReserveCounter()
-    {
-        batteryReserveCounter.text = "Battery Reserve: " + PlayerBatteryPowerManager.Instance.CurrentBatteryReserves;
     }
 
     void UpdateScrapCounter()
@@ -68,21 +57,9 @@ public class UIManager : MonoBehaviour
         scrapCounter.text = "Scrap: " + EconomyManager.Instance.CurrentScrap;
     }
 
-    void UpdateShipsLeftText()
-    {
-        enemyShipsLeftText.text = "Enemy Ships Left: " + WaveManager.Instance.ActiveShipCount;
-    }
-
     void UpdateWaveCounter()
     {
         waveCounterText.text = "Wave Number: " + WaveManager.Instance.WaveCount;
-    }
-
-    void UpdateStationHealthText()
-    {
-        if (stationHealth == null) return;
-        
-        stationHealthText.text = "Station Health: " + (int)stationHealth.BaseHealth;
     }
 
     public void OpenPlatformUI(Platform platform)

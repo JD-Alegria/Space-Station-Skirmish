@@ -8,12 +8,14 @@ public class SpaceStationHealth : MonoBehaviour, IDamageable
     List<ShieldGenerator> poweredShieldGenerators = new ();
     bool canTakeDamage = true;
     float baseHealth;
+    float startingHealth;
     float damageReductionModifer;
     
     public float BaseHealth => baseHealth;
 
     public float DamageReductionModifer => damageReductionModifer;
 
+    public event Action<float, float> OnDamageTaken;
     public event Action OnDestroyed;
 
     public GameObject GetGameObject()
@@ -26,6 +28,7 @@ public class SpaceStationHealth : MonoBehaviour, IDamageable
     void Start()
     {
         baseHealth = GameBalanceManager.Instance.StartingBaseHealth;
+        startingHealth = baseHealth;
     }
 
     public void RegisterShieldGenerator(ShieldGenerator shieldGenerator)
@@ -49,6 +52,8 @@ public class SpaceStationHealth : MonoBehaviour, IDamageable
         float finalDamage = damageInfo.Amount * (1f - totalReduction);
         
         baseHealth -= finalDamage;
+        
+        OnDamageTaken?.Invoke(baseHealth, startingHealth);
 
         if (baseHealth <= 0) Die();
     }

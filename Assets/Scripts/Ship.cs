@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum ShipStatus
+{
+    Active,
+    Destroyed
+}
+
 public class Ship : MonoBehaviour
 {
     AudioSource audioSource;
@@ -12,6 +18,7 @@ public class Ship : MonoBehaviour
     
     EnemyShipData data;
     Transform targetPos;
+    ShipStatus shipStatus;
     
     ShipMovement shipMovement;
     ShipHealth shipHealth;
@@ -34,6 +41,7 @@ public class Ship : MonoBehaviour
     {
         this.data = data;
         targetPos = lookDirection;
+        shipStatus = ShipStatus.Active;
         
         shipHealth.Init(data);
         shipMovement.Init(data, lookDirection);
@@ -79,8 +87,9 @@ public class Ship : MonoBehaviour
 
     void HandleShipDestroyed(ShipHealth shipHealth)
     {
-        //tell all the other scripts to do their thing for destroyed ship
-        //also add scrap to the economy manager too
+        if (shipStatus == ShipStatus.Destroyed) return;
+        shipStatus = ShipStatus.Destroyed;
+        
         switch (data.ShipType)
         {
             case ShipType.Fighter:

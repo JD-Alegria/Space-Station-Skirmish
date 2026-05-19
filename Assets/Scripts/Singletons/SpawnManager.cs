@@ -28,6 +28,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] bool forceSpawnFightersOnly = false;
     [SerializeField] bool forceSpawnCorvettesOnly = false;
 
+    public static event Action<int, int> OnWaveSpawnProgressChanged;
     Coroutine spawnRoutine;
 
     void Awake()
@@ -94,12 +95,13 @@ public class SpawnManager : MonoBehaviour
         if (spawnPrefabs.Count == 0) yield break;
         if (WaveManager.CurrentWaveState != WaveState.Spawning) yield break;
 
+        int threatBudgetCache = threatBudget;
         bool isSpawnRandom;
         if (spawnIndex == -1) isSpawnRandom = true;
         else isSpawnRandom = false;
         isSpawning = true;
         
-        while (threatBudget >= 0)
+        while (threatBudget > 0)
         {
             WaitForSeconds wait = new WaitForSeconds(spawnDelay);
             
@@ -114,6 +116,7 @@ public class SpawnManager : MonoBehaviour
                     Quaternion lookDirection = GetLookDirection(spawnPos);
                     SpawnFighter(spawnIndex, spawnPos, lookDirection);
                     threatBudget -= fighterData.ThreatCost;
+                    OnWaveSpawnProgressChanged?.Invoke(threatBudgetCache - threatBudget, threatBudgetCache);
                     yield return wait;
             }
             else if (spawnIndex == 1)
@@ -122,6 +125,7 @@ public class SpawnManager : MonoBehaviour
                     Quaternion lookDirection = GetLookDirection(spawnPos);
                     SpawnCorvette(spawnIndex, spawnPos, lookDirection);
                     threatBudget -= corvetteData.ThreatCost;
+                    OnWaveSpawnProgressChanged?.Invoke(threatBudgetCache - threatBudget, threatBudgetCache);
                     yield return wait;
             }
         }
